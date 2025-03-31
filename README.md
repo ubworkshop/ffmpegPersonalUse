@@ -1,4 +1,7 @@
 # ffmpegPersonalUse
+
+ 
+
 如何使用:
 
 安装 FFmpeg:
@@ -9,8 +12,6 @@ macOS: 使用 Homebrew: brew install ffmpeg
 Linux (Debian/Ubuntu): sudo apt update && sudo apt install ffmpeg
 Linux (Fedora): sudo dnf install ffmpeg
 保存脚本: 将上面的 Python 代码保存为一个文件，例如 split_audiobook.py。
-
-
 
 运行脚本:
 
@@ -23,7 +24,7 @@ python split_audiobook.py "你的有声书文件路径.m4b"
 注意: 如果文件路径包含空格，请务必用引号将其括起来。
 脚本说明:
 
-sanitize_filename(filename): 这个辅助函数用于移除或替换章节标题中不适合用作文件名的字符（如 \, /, :, *, ?, ", <, >, |），防止创建文件时出错。
+sanitize_filename(filename): 这个辅助函数用于移除或替换章节标题中不适合用作文件名的字符（如 , /, :, *, ?, ", <, >, |），防止创建文件时出错。
 get_chapters(filepath): 调用 ffprobe，请求 JSON 格式的章节信息。如果成功且包含章节，则返回章节列表，否则返回 None。它还包含了错误处理，例如 ffprobe 命令未找到或执行出错。
 split_audio_by_chapters(filepath, chapters):
 创建输出目录（例如，如果输入是 MyBook.m4b，输出目录将是 MyBook_章节）。
@@ -41,5 +42,7 @@ split_audio_by_chapters(filepath, chapters):
 -y: 自动覆盖同名输出文件（如果存在）。
 output_path: 指定输出文件的完整路径和名称。
 使用 subprocess.run() 执行 ffmpeg 命令，并检查执行结果。
-if __name__ == "__main__": 这部分是脚本的入口点。它检查是否提供了命令行参数（音频文件路径），然后调用上述函数来完成工作。
+if name == "main": 这部分是脚本的入口点。它检查是否提供了命令行参数（音频文件路径），然后调用上述函数来完成工作。
 shlex.quote: 用于安全地构建命令行字符串，特别是当路径或标题包含特殊字符或空格时。
+
+ 
